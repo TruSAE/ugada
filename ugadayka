@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+<script type="text/javascript">
+	
+	   
+	var answer = parseInt(Math.random() * 100);
+	var tryCount = 0;
+
+	var maxTryCount = 3;
+
+		function readInt1(){
+			var number = document.getElementById("userAnswer1").value;
+			return parseInt(number);
+		}
+		
+		function readInt2(){
+			var number = document.getElementById("userAnswer2").value;
+			return parseInt(number);
+		}
+
+		function write(text){
+			document.getElementById("info").innerHTML = text;
+		}
+		
+		function write1(text){
+			document.getElementById("info1").innerHTML = text;
+		}
+		
+		function hide(id){
+			document.getElementById(id).style.display = "none";
+		}
+
+	function guess(userAnswer1, userAnswer2){
+	tryCount++;
+
+	var userAnswer1 = readInt1();
+	var userAnswer2 = readInt2();
+			
+			if(userAnswer1 == answer){
+				write("<b>Поздравляю, первый игрок, вы угадали!</b>");
+				hide("button");
+				hide("userAnswer1", "userAnswer2");
+			} else if(userAnswer2 == answer){
+				write1("<b>Поздравляю, второй игрок, вы угадали!</b>");
+				hide("button");
+				hide("userAnswer1", "userAnswer2");
+			} else if(tryCount >= maxTryCount){
+				write("Вы проиграли<br>Правильный ответ: " + answer);
+				write1(" ");
+				hide("button");
+				hide("userAnswer", "userAnswer2");
+			} else if(userAnswer1 > answer){
+				write("Вы ввели слишком большое число<br>Попробуйте еще раз. Введите число от 1 до 100");
+					} if(userAnswer2 > answer){
+						write1("Вы ввели слишком большое число<br>Попробуйте еще раз. Введите число от 1 до 100");
+			} else if(userAnswer1 < answer){
+				write("Вы ввели слишком маленькое число<br>Попробуйте еще раз. Введите число от 1 до 100");	
+					} if(userAnswer2 < answer){
+						write1("Вы ввели слишком маленькое число<br>Попробуйте еще раз. Введите число от 1 до 100");
+				} 
+			
+						
+			
+	}
+		
+		
+				
+</script> 
+</head>
+<body>
+
+<div class="content">
+		<?php
+		include "menu.php";
+		?>
+
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка</h1>
+
+			<div class="box">
+
+				<p id="info">Первый игрок, угадайте число от 0 до 100</p>
+				<input type="text" id="userAnswer1">
+				<br>
+				<br>
+				<p id="info1">Второй игрок, угадайте число от 0 до 100</p>
+				<input type="text" id="userAnswer2">
+				<br>
+				<a href="#" onClick="guess();" id="button">Начать</a>	
+
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; <?php echo date("Y");?> Alexey
+</div>
+
+
+</body>
+</html>
